@@ -20,5 +20,5 @@ GPL. Sources that deviate from this license are marked by a header
 ### Screen
 
 ![GUI](img/Sp4w.png)
-![iOS](img/airplay.png)
+![iOS](img/airplay.PNG)
 
