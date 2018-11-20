@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{8d210e6e-71a7-4ca8-91a0-fa2fe462618a}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{8b5b0873-5ec2-43d5-a8bf-b4a267dce767}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{d7182d6f-39a7-4c3b-be24-aaa813624ba9}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;jpg;jpeg;jpe;manifest</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Bonjour">
+      <UniqueIdentifier>{3387f3d8-2f8a-48e5-b655-4dc9f6133d61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Shared">
+      <UniqueIdentifier>{7a6d35e5-638e-4a06-9ccb-b7df42b3364c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shared">
+      <UniqueIdentifier>{21d148e2-0f0d-4667-a87b-0cc5db169874}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AboutDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Shairport4w.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="alac.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="alac.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ExtOptsDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ChangeNameDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DmapParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PushPinButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyBitmapButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DacpService.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HairTunes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="shared\Networking.cpp">
+      <Filter>Source Files\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="sp_bonjour.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Config.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="shared\AudioPlayer.cpp">
+      <Filter>Source Files\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="shared\base64.cpp">
+      <Filter>Source Files\Shared</Filter>
+    </ClCompile>
+    <ClCompile Include="shared\utils.cpp">
+      <Filter>Source Files\Shared</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AboutDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="alac.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdint_win.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bonjour\dns_sd.h">
+      <Filter>Header Files\Bonjour</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtOptsDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ChangeNameDlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DmapParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PushPinButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="http_parser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TrayIcon.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyBitmapButton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DacpService.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HairTunes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyAppMessages.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RaopContextImpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shared\myMutex.h">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="shared\myThread.h">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="shared\Networking.h">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="RaopContext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RaopDefs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sp_bonjour.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="shared\AudioPlayer.h">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="shared\base64.h">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="shared\myCrypt.h">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="shared\myQueue.h">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
+    <ClInclude Include="shared\utils.h">
+      <Filter>Header Files\Shared</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\Shairport4w.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="LICENSE.txt" />
+    <None Include="res\fast_forward.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\fast_forward_disabled.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\fast_forward_pressed.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\pause.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\wmc.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\pause_disabled.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\pause_pressed.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\play.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\play_disabled.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\play_pressed.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\rewind.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\rewind_disabled.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\rewind_pressed.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\skip_to_prev.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\skip_to_prev_disabled.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\skip_to_prev_pressed.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\skip_to_next.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\skip_to_next_disabled.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\skip_to_next_pressed.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\ppin_pressed.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\ppin_released.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\ProgressShadow.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\AdShadow.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\ArtShadow.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\mute.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\mute_pressed.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\ShairportRecorder.ico">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="res\update-16.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Shairport4w.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
