@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+packages
+.vs
+Debug
+Release
+src/Shairport4w.vcxproj.user
