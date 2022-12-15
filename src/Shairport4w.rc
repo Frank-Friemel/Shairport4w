@@ -17,7 +17,7 @@
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
 LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
-#pragma code_page(1252)
+#pragma code_page(65001)
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -118,7 +118,7 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,9,4
+ FILEVERSION 1,0,9,5
  PRODUCTVERSION 1,0,0,1
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
@@ -134,7 +134,7 @@ BEGIN
     BEGIN
         BLOCK "040904b0"
         BEGIN
-            VALUE "FileVersion", "1.0.9.4"
+            VALUE "FileVersion", "1.0.9.5"
             VALUE "InternalName", "Shairport4w"
             VALUE "OriginalFilename", "Shairport4w.exe"
             VALUE "ProductName", "Shairport4w Module"
@@ -191,7 +191,7 @@ END
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 LANGUAGE LANG_ENGLISH, SUBLANG_NEUTRAL
-#pragma code_page(1252)
+#pragma code_page(65001)
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -537,7 +537,7 @@ END
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DEU)
 LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
-#pragma code_page(1252)
+#pragma code_page(65001)
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -546,7 +546,7 @@ LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
 
 IDD_ABOUTBOX DIALOGEX 0, 0, 255, 182
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "�ber"
+CAPTION "Über"
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
     GROUPBOX        "",IDC_STATIC_FRAME,7,7,241,168
@@ -555,12 +555,12 @@ BEGIN
     LTEXT           "",IDC_STATIC_VERSION,145,52,62,8
     CTEXT           "",IDC_STATIC_WAVEOUT,82,65,89,8
     CTEXT           "(c) Copyright 2018\nFrank Friemel, Philippe Dubois\nDaniel Latimer\n\nShairport4w basiert auf Shairport von James Laird",IDC_STATIC_2,23,78,207,43
-    DEFPUSHBUTTON   "Schlie�en",IDOK,102,148,50,14
+    DEFPUSHBUTTON   "Schließen",IDOK,102,148,50,14
 END
 
 IDD_CHANGEUSER DIALOGEX 0, 0, 190, 119
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Airport Name and Passwort �ndern"
+CAPTION "Airport Name and Passwort ändern"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     LTEXT           "Airport Name",IDC_STATIC,24,10,43,8
@@ -585,10 +585,10 @@ BEGIN
     LTEXT           "min",IDC_STATIC,19,20,12,8
     CONTROL         "",IDC_BUFFERING,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | TBS_NOTICKS | WS_TABSTOP,13,32,179,21
     LTEXT           "max",IDC_STATIC,175,20,14,8
-    GROUPBOX        "Ausgabe Ger�t",IDC_STATIC,7,60,189,40
+    GROUPBOX        "Ausgabe Gerät",IDC_STATIC,7,60,189,40
     COMBOBOX        IDC_SOUNDCARD,13,77,179,71,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Log Datei",IDC_LOG_TO_FILE,"Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,13,106,46,10
-    CONTROL         "Meta Info unterdr�cken",IDC_NO_META_INFO,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,75,106,92,10
+    CONTROL         "Meta Info unterdrücken",IDC_NO_META_INFO,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,75,106,92,10
     CONTROL         "Multimedia Kontrolle deaktivieren",IDC_NO_NEDIA_CONTROLS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,75,117,121,10
     DEFPUSHBUTTON   "OK",IDOK,93,138,50,14,WS_GROUP
@@ -607,7 +607,7 @@ BEGIN
     GROUPBOX        "",IDC_CONTROL_PANEL3,7,25,215,66
     LTEXT           "Airport Name",IDC_STATIC,13,42,43,8
     EDITTEXT        IDC_APNAME,60,41,99,14,ES_AUTOHSCROLL | ES_READONLY
-    PUSHBUTTON      "�ndern...",IDC_CHANGENAME,163,41,53,32
+    PUSHBUTTON      "Ändern...",IDC_CHANGENAME,163,41,53,32
     LTEXT           "Passwort",IDC_STATIC,13,60,30,8
     EDITTEXT        IDC_PASSWORD,60,59,99,14,ES_PASSWORD | ES_READONLY
     COMBOBOX        IDC_PROXY,60,75,104,80,CBS_DROPDOWNLIST | CBS_SORT | NOT WS_VISIBLE | WS_DISABLED | WS_VSCROLL | WS_TABSTOP
@@ -633,7 +633,7 @@ END
 
 IDD_LIC_DIALOG DIALOGEX 0, 0, 262, 85
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Lizenz-Schl�ssel"
+CAPTION "Lizenz-Schlüssel"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     EDITTEXT        IDC_EDIT,24,28,213,14,ES_AUTOHSCROLL
@@ -730,7 +730,7 @@ BEGIN
     END
     POPUP "&Hilfe"
     BEGIN
-        MENUITEM "�be&r...",                    ID_APP_ABOUT
+        MENUITEM "Übe&r...",                    ID_APP_ABOUT
     END
 END
 
@@ -775,13 +775,13 @@ BEGIN
     IDS_TRACK_LABEL         "Titel"
     IDS_TRAY_ACK            "Hier klicken, um Fenster wieder anzuzeigen"
     IDS_ALBUM_LABEL         "Album"
-    IDS_ARTIST_LABEL        "K�nstler"
+    IDS_ARTIST_LABEL        "Künstler"
     IDS_NOW_PLAYING         "Aktuelle Titel-Info"
     IDS_BUFFERING           "Daten-Puffer"
     IDS_SYSTEM_DEFAULT      "wie im System eingestellt"
-    IDS_INSTALL_BONJOUR     "Installiere bitte Bonjour f�r Windows von hier: http://support.apple.com/kb/DL999 \n\nKlicke OK um dorthin geleitet zu werden"
+    IDS_INSTALL_BONJOUR     "Installiere bitte Bonjour für Windows von hier: http://support.apple.com/kb/DL999 \n\nKlicke OK um dorthin geleitet zu werden"
     IDS_STATUS_CONNECTED    "Verbunden mit """
-    IDS_UNINSTALL           "M�chtest Du Shairport4w jetzt deinstallieren?"
+    IDS_UNINSTALL           "Möchtest Du Shairport4w jetzt deinstallieren?"
     IDS_UNINSTALL_ERROR     "Shairport4w ist nicht korrekt installiert und kann somit nicht deinstalliert werden"
     IDS_ERR_MULTIPLE_INSTANCES 
                             "Du kannst nur eine Instanz des Programms starten"
@@ -791,25 +791,25 @@ END
 STRINGTABLE
 BEGIN
     ID_FILE_NEW             "Neues Dokument erstellen\nNeu"
-    ID_FILE_OPEN            "Existierendes Dokument �ffnen\n�ffnen"
-    ID_FILE_CLOSE           "Aktuelles Dokument schlie�en\nSchlie�en"
+    ID_FILE_OPEN            "Existierendes Dokument öffnen\nÖffnen"
+    ID_FILE_CLOSE           "Aktuelles Dokument schließen\nSchließen"
     ID_FILE_SAVE            "Aktuelles Dokument speichern\nSpeichern"
     ID_FILE_SAVE_AS         "Aktuelles Dokument speichern unter\nSpeichern unter"
-    ID_FILE_PAGE_SETUP      "Drucker Seiteneinstellungen �ndern\nSeiteneinstellungen"
-    ID_FILE_PRINT_SETUP     "Drucker Optionen �ndern\nDrucker Optionen"
+    ID_FILE_PAGE_SETUP      "Drucker Seiteneinstellungen ändern\nSeiteneinstellungen"
+    ID_FILE_PRINT_SETUP     "Drucker Optionen ändern\nDrucker Optionen"
     ID_FILE_PRINT           "Aktuelles Dokument drucken\nDrucken"
     ID_FILE_PRINT_PREVIEW   "Druckvorschau\nDruckvorschau"
 END
 
 STRINGTABLE
 BEGIN
-    ID_APP_ABOUT            "Programm Information anzeigen\n�ber"
+    ID_APP_ABOUT            "Programm Information anzeigen\nÜber"
     ID_APP_EXIT             "Anwendung beenden\nBeenden"
 END
 
 STRINGTABLE
 BEGIN
-    ID_NEXT_PANE            "N�chstes Fenster\nN�chstes Fenster"
+    ID_NEXT_PANE            "Nächstes Fenster\nNächstes Fenster"
     ID_PREV_PANE            "Voriges Fenster\nVoriges Fenster"
 END
 
@@ -817,36 +817,36 @@ STRINGTABLE
 BEGIN
     ID_WINDOW_NEW           "Neues Fenster\nNeues Fenster"
     ID_WINDOW_ARRANGE       "Icons ordnen\nIcons ordnen"
-    ID_WINDOW_CASCADE       "Fenster �berlappend\nFenster �berlappend"
-    ID_WINDOW_TILE_HORZ     "Fenster nicht �berlappend\nFenster nicht �berlappend"
+    ID_WINDOW_CASCADE       "Fenster überlappend\nFenster überlappend"
+    ID_WINDOW_TILE_HORZ     "Fenster nicht überlappend\nFenster nicht überlappend"
     ID_WINDOW_TILE_VERT     "Fenster teilen\nFenster teilen"
     ID_WINDOW_SPLIT         "Aktuelles Fenster aufteilen\nAufteilen"
 END
 
 STRINGTABLE
 BEGIN
-    ID_EDIT_CLEAR           "Auswahl l�schen\nL�schen"
-    ID_EDIT_CLEAR_ALL       "Alles L�schen\nAlles L�schen"
+    ID_EDIT_CLEAR           "Auswahl löschen\nLöschen"
+    ID_EDIT_CLEAR_ALL       "Alles Löschen\nAlles Löschen"
     ID_EDIT_COPY            "In Zwischenablage kopieren\nKopieren"
     ID_EDIT_CUT             "Ausschneiden in Zwischenablage\nAusschneiden"
     ID_EDIT_FIND            "Suchen\nSuchen"
-    ID_EDIT_PASTE           "Aus Zwischenablage einf�gen\nEinf�gen"
+    ID_EDIT_PASTE           "Aus Zwischenablage einfügen\nEinfügen"
     ID_EDIT_REPEAT          "Letzte Aktion wiederholen\nWiederholen"
     ID_EDIT_REPLACE         "Ersetzen\nErsetzen"
-    ID_EDIT_SELECT_ALL      "Alles ausw�hlen\nAlles ausw�hlen"
+    ID_EDIT_SELECT_ALL      "Alles auswählen\nAlles auswählen"
     ID_EDIT_UNDO            "Letzte Aktion widerrufen\nWiderrufen"
     ID_EDIT_REDO            "Letzte Aktion wiederherstellen\nWiederherstellen"
 END
 
 STRINGTABLE
 BEGIN
-    ATL_IDS_SCSIZE          "Fenstergr��e �ndern"
-    ATL_IDS_SCMOVE          "Fensterposition �ndern"
+    ATL_IDS_SCSIZE          "Fenstergröße ändern"
+    ATL_IDS_SCMOVE          "Fensterposition ändern"
     ATL_IDS_SCMINIMIZE      "Fenster minimieren"
     ATL_IDS_SCMAXIMIZE      "Fenster maximieren"
-    ATL_IDS_SCNEXTWINDOW    "N�chstes Dokument anzeigen"
+    ATL_IDS_SCNEXTWINDOW    "Nächstes Dokument anzeigen"
     ATL_IDS_SCPREVWINDOW    "Voriges Dokument anzeigen"
-    ATL_IDS_SCCLOSE         "Aktuelles Dokument schlie�en"
+    ATL_IDS_SCCLOSE         "Aktuelles Dokument schließen"
 END
 
 STRINGTABLE
@@ -869,12 +869,12 @@ END
 STRINGTABLE
 BEGIN
     IDS_UNINSTALL_SUCCESS_REBOOT 
-                            "Shairport4w wurde erfolgreich deinstalliert. F�r das restlose entfernen von Dateien muss das System neu gestartet werden. M�chtest Du das jetzt erledigen?"
+                            "Shairport4w wurde erfolgreich deinstalliert. Für das restlose entfernen von Dateien muss das System neu gestartet werden. Möchtest Du das jetzt erledigen?"
     IDS_ONLINE_UPDATE       "Online-Update..."
-    IDS_UPDATE_ERROR_FMT    "Die Versions-Ermittlung schlug fehl. Fehler-Code: %lu/%ld. Versuche es bitte sp�ter erneut."
-    IDS_DOWNLOAD_ERROR_FMT  "Der Download schlug fehl. Fehler-Code: %lu/%ld. Versuche es bitte sp�ter erneut."
+    IDS_UPDATE_ERROR_FMT    "Die Versions-Ermittlung schlug fehl. Fehler-Code: %lu/%ld. Versuche es bitte später erneut."
+    IDS_DOWNLOAD_ERROR_FMT  "Der Download schlug fehl. Fehler-Code: %lu/%ld. Versuche es bitte später erneut."
     IDS_NEW_VERSION_AVAILABLE 
-                            "Eine neue Version ist verf�gbar. Jetzt laden und installieren?"
+                            "Eine neue Version ist verfügbar. Jetzt laden und installieren?"
     IDS_UPDATE_NOT_SIGNED   "Der geladenen Update-Datei kann nicht vertraut werden"
     IDS_FILE_NOT_SIGNED     "Die Datei %s ist nicht signiert"
     IDS_NO_NEW_VERSION      "Du hast bereits die neueste Version"
@@ -885,13 +885,357 @@ END
 #endif    // German (Germany) resources
 /////////////////////////////////////////////////////////////////////////////
 
+/////////////////////////////////////////////////////////////////////////////
+// Japanese resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_JAPANESE, SUBLANG_NEUTRAL
+#pragma code_page(65001)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_EXT_OPTS DIALOGEX 0, 0, 203, 162
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "詳細設定"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    GROUPBOX        "バッファ",IDC_STATIC_BUFFERING,9,4,189,54
+    LTEXT           "最小",IDC_STATIC,19,20,12,8
+    CONTROL         "",IDC_BUFFERING,"msctls_trackbar32",TBS_AUTOTICKS | TBS_TOP | TBS_NOTICKS | WS_TABSTOP,13,32,179,21
+    LTEXT           "最大",IDC_STATIC,175,20,14,8
+    GROUPBOX        "サウンドカード",IDC_STATIC,7,60,189,40
+    COMBOBOX        IDC_SOUNDCARD,13,77,179,71,CBS_DROPDOWNLIST | CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "ログファイル作成",IDC_LOG_TO_FILE,"Button",BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,11,106,61,10
+    CONTROL         "メタ情報を抑制",IDC_NO_META_INFO,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,75,106,92,10
+    CONTROL         "マルチメディアの制御を無効化",IDC_NO_NEDIA_CONTROLS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,75,117,121,10
+    DEFPUSHBUTTON   "OK",IDOK,93,134,50,14,WS_GROUP
+    PUSHBUTTON      "キャンセル",IDCANCEL,147,134,50,14
+END
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 255, 180
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "このソフトについて"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "",IDC_STATIC_FRAME,7,7,241,166
+    ICON            IDR_MAINFRAME,IDC_STATIC,116,26,20,20
+    LTEXT           "Shairport4w",IDC_STATIC_1,21,52,106,8,0,WS_EX_RIGHT
+    LTEXT           "",IDC_STATIC_VERSION,132,52,62,8
+    LTEXT           "",IDC_STATIC_WAVEOUT,82,65,89,8
+    CTEXT           "(c) Copyright 2018\nFrank Friemel, Philippe Dubois\nDaniel Latimer\n\nShairport4w は James Laird による Shairport が元です",IDC_STATIC_2,23,78,207,43
+    DEFPUSHBUTTON   "Close",IDOK,102,149,50,14
+END
+
+IDD_MAINDLG DIALOGEX 0, 0, 229, 237
+STYLE DS_SETFONT | DS_MODALFRAME | WS_MINIMIZEBOX | WS_CLIPSIBLINGS | WS_CAPTION | WS_SYSMENU
+CAPTION "Shairport4w"
+MENU IDR_MAINMENU
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    GROUPBOX        "",IDC_STATUS_PANEL,7,3,194,19
+    LTEXT           "",IDC_STATIC_STATUS,13,10,182,8,SS_ENDELLIPSIS
+    CONTROL         "PushPin",IDC_PUSH_PIN,"Button",BS_OWNERDRAW | WS_TABSTOP,205,6,15,14
+    GROUPBOX        "",IDC_CONTROL_PANEL3,7,25,215,66
+    LTEXT           "Airport 名",IDC_STATIC,13,42,43,8
+    EDITTEXT        IDC_APNAME,60,41,99,14,ES_AUTOHSCROLL | ES_READONLY
+    PUSHBUTTON      "変更...",IDC_CHANGENAME,163,41,53,32
+    LTEXT           "パスワード",IDC_STATIC,13,60,30,8
+    EDITTEXT        IDC_PASSWORD,60,59,99,14,ES_PASSWORD | ES_READONLY
+    COMBOBOX        IDC_PROXY,60,75,104,80,CBS_DROPDOWNLIST | CBS_SORT | NOT WS_VISIBLE | WS_DISABLED | WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "",IDC_STATIC_PANEL,7,94,215,111
+    CONTROL         "トラック情報",IDC_INFOPANEL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,105,43,10
+    CONTROL         "",IDC_TIME_BAR,"Static",SS_BLACKFRAME,118,105,60,8
+    LTEXT           "Static",IDC_STATIC_TIME_INFO,182,105,39,8
+    CONTROL         "",IDC_INFO_BMP,"Static",SS_BLACKFRAME,14,120,74,74
+    EDITTEXT        IDC_STATIC_ARTIST,97,120,118,24,ES_MULTILINE | ES_READONLY | NOT WS_BORDER
+    EDITTEXT        IDC_STATIC_TRACK,97,145,118,24,ES_MULTILINE | ES_READONLY | NOT WS_BORDER
+    EDITTEXT        IDC_STATIC_ALBUM,97,170,118,24,ES_MULTILINE | ES_READONLY | NOT WS_BORDER
+    GROUPBOX        "",IDC_CONTROL_PANEL,7,208,215,23
+    PUSHBUTTON      "Play",IDC_MM_MUTE,25,213,15,14,NOT WS_TABSTOP
+    PUSHBUTTON      "Play",IDC_MM_SKIP_PREV,52,213,15,14,NOT WS_TABSTOP
+    PUSHBUTTON      "Play",IDC_MM_REW,79,213,15,14,NOT WS_TABSTOP
+    PUSHBUTTON      "Play",IDC_MM_PAUSE,106,213,15,14,NOT WS_TABSTOP
+    PUSHBUTTON      "Play",IDC_MM_PLAY,133,213,15,14,NOT WS_TABSTOP
+    PUSHBUTTON      "Play",IDC_MM_FFW,160,213,15,14,NOT WS_TABSTOP
+    PUSHBUTTON      "Play",IDC_MM_SKIP_NEXT,187,213,15,14,NOT WS_TABSTOP
+    RTEXT           "Static",IDC_STATIC_TIME_INFO_CURRENT,72,105,43,8
+    CONTROL         "",IDC_STATIC_BRAND_ICON,"Static",SS_BITMAP | NOT WS_VISIBLE,35,102,15,13
+END
+
+IDD_CHANGEUSER DIALOGEX 0, 0, 190, 119
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Airport 名とパスワードの変更"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "キャンセル",IDCANCEL,133,98,50,14
+    EDITTEXT        IDC_NAME,68,7,106,14,ES_AUTOHSCROLL
+    LTEXT           "Airport 名",IDC_STATIC,24, 10, 43, 8
+    LTEXT           "パスワード",IDC_STATIC,25, 28, 43, 8
+    LTEXT           "パスワード確認",IDC_STATIC,7, 46, 60, 8
+    EDITTEXT        IDC_PASS,68,25,106,14,ES_PASSWORD | ES_AUTOHSCROLL
+    EDITTEXT        IDC_VERIFYPASS,68,43,106,14,ES_PASSWORD | ES_AUTOHSCROLL
+    PUSHBUTTON      "OK",IDOK,81,98,50,14
+    CONTROL         "トレイアイコン",IDC_TRAY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,8, 64, 63, 10
+    CONTROL         "最小化して起動",IDC_START_MINIMIZED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,75,63,10
+    CONTROL         "自動で実行",IDC_AUTOSTART,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,8,86,65,10
+END
+
+IDD_LIC_DIALOG DIALOGEX 0, 0, 262, 85
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "ライセンスキー"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT,24,28,213,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,73,64,50,14
+    PUSHBUTTON      "キャンセル",IDCANCEL,139,64,50,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_EXT_OPTS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 196
+        VERTGUIDE, 12
+        VERTGUIDE, 191
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 159
+    END
+
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 248
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 173
+    END
+
+    IDD_MAINDLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 222
+        VERTGUIDE, 14
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 231
+        HORZGUIDE, 16
+        HORZGUIDE, 39
+        HORZGUIDE, 48
+    END
+
+    IDD_CHANGEUSER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 183
+        VERTGUIDE, 64
+        VERTGUIDE, 68
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 112
+    END
+
+    IDD_LIC_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 255
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 78
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_TRAY MENU
+BEGIN
+    POPUP "_Menu"
+    BEGIN
+        MENUITEM "表示(&O)",                       IDC_SHOW
+        MENUITEM "「再生中」をトレイ内に表示(&S)", ID_EDIT_TRAYTRACKINFO
+        MENUITEM SEPARATOR
+        MENUITEM "終了(&X)",                       IDCANCEL
+    END
+END
+
+IDR_MAINMENU MENU
+BEGIN
+    POPUP "ファイル(&A)"
+    BEGIN
+        MENUITEM "終了(&X)",                       IDCANCEL
+    END
+    POPUP "編集(&E)"
+    BEGIN
+        MENUITEM "設定(&A)...",                IDC_EXTENDED_OPTIONS
+        MENUITEM "「再生中」をトレイ内に表示(&S)", ID_EDIT_TRAYTRACKINFO
+    END
+    POPUP "ヘルプ(&H)"
+    BEGIN
+        MENUITEM "情報(&A)...",                   ID_APP_ABOUT
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_ABOUTBOX AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_MAINDLG AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_EXT_OPTS AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDR_MAINFRAME           "Shairport4w"
+    IDS_TRACK_LABEL         "トラック"
+    IDS_TRAY_ACK            "アプリのウィンドウ復元には、ここをクリック"
+    IDS_ALBUM_LABEL         "アルバム"
+    IDS_ARTIST_LABEL        "アーティスト"
+    IDS_NOW_PLAYING         "再生中"
+    IDS_BUFFERING           "バッファ"
+    IDS_SYSTEM_DEFAULT      "システムの設定に従う"
+    IDS_INSTALL_BONJOUR     "Bonjour for Windows をここからインストールしてください: http://support.apple.com/kb/DL999 \n\nOK で転送します"
+    IDS_STATUS_CONNECTED    "接続 """
+    IDS_UNINSTALL           "Shairport4w をアンインストールしますか?"
+    IDS_UNINSTALL_ERROR     "Shairport4w が正しくインストールされていないため、アンインストールできません。"
+    IDS_ERR_MULTIPLE_INSTANCES 
+                            "この構成のインスタンスは1つしか実行できません"
+    IDS_UNINSTALL_SUCCESS   "Shairport4w は、このコンピュータから正常に削除されました"
+END
+
+STRINGTABLE
+BEGIN
+    ID_FILE_NEW             "新規文書の作成\n新規"
+    ID_FILE_OPEN            "既存の文書を開く\n開く"
+    ID_FILE_CLOSE           "開いている文書を閉じる\n閉じる"
+    ID_FILE_SAVE            "開いている文書を保存\n保存"
+    ID_FILE_SAVE_AS         "開いている文書に名前をつけて保存\n名前を付けて保存"
+    ID_FILE_PAGE_SETUP      "印刷オプションの変更\nページ設定"
+    ID_FILE_PRINT_SETUP     "プリンターを印刷オプションの変更\n印刷の設定"
+    ID_FILE_PRINT           "開いている文書を印刷\n印刷"
+    ID_FILE_PRINT_PREVIEW   "すべてのページを表示\n印刷プレビュー"
+END
+
+STRINGTABLE
+BEGIN
+    ID_APP_ABOUT            "プログラムの情報やバージョン数や著作権を表示\n情報"
+    ID_APP_EXIT             "アプリの終了、文書の保存を尋ねる\n終了"
+END
+
+STRINGTABLE
+BEGIN
+    ID_NEXT_PANE            "Switch to the next window pane\nNext Pane"
+    ID_PREV_PANE            "Switch back to the previous window pane\nPrevious Pane"
+END
+
+STRINGTABLE
+BEGIN
+    ID_WINDOW_NEW           "Open another window for the active document\nNew Window"
+    ID_WINDOW_ARRANGE       "Arrange icons at the bottom of the window\nArrange Icons"
+    ID_WINDOW_CASCADE       "Arrange windows so they overlap\nCascade Windows"
+    ID_WINDOW_TILE_HORZ     "Arrange windows as non-overlapping tiles\nTile Windows"
+    ID_WINDOW_TILE_VERT     "Arrange windows as non-overlapping tiles\nTile Windows"
+    ID_WINDOW_SPLIT         "Split the active window into panes\nSplit"
+END
+
+STRINGTABLE
+BEGIN
+    ID_EDIT_CLEAR           "Erase the selection\nErase"
+    ID_EDIT_CLEAR_ALL       "Erase everything\nErase All"
+    ID_EDIT_COPY            "Copy the selection and put it on the Clipboard\nCopy"
+    ID_EDIT_CUT             "Cut the selection and put it on the Clipboard\nCut"
+    ID_EDIT_FIND            "Find the specified text\nFind"
+    ID_EDIT_PASTE           "Insert Clipboard contents\nPaste"
+    ID_EDIT_REPEAT          "Repeat the last action\nRepeat"
+    ID_EDIT_REPLACE         "Replace specific text with different text\nReplace"
+    ID_EDIT_SELECT_ALL      "Select the entire document\nSelect All"
+    ID_EDIT_UNDO            "Undo the last action\nUndo"
+    ID_EDIT_REDO            "Redo the previously undone action\nRedo"
+END
+
+STRINGTABLE
+BEGIN
+    ATL_IDS_SCSIZE          "Change the window size"
+    ATL_IDS_SCMOVE          "Change the window position"
+    ATL_IDS_SCMINIMIZE      "Reduce the window to an icon"
+    ATL_IDS_SCMAXIMIZE      "Enlarge the window to full size"
+    ATL_IDS_SCNEXTWINDOW    "Switch to the next document window"
+    ATL_IDS_SCPREVWINDOW    "Switch to the previous document window"
+    ATL_IDS_SCCLOSE         "Close the active window and prompts to save the documents"
+END
+
+STRINGTABLE
+BEGIN
+    ATL_IDS_SCRESTORE       "Restore the window to normal size"
+    ATL_IDS_SCTASKLIST      "Activate Task List"
+    ATL_IDS_MDICHILD        "Activate this window"
+END
+
+STRINGTABLE
+BEGIN
+    ATL_IDS_IDLEMESSAGE     "準備完了"
+END
+
+STRINGTABLE
+BEGIN
+    ATL_IDS_MRU_FILE        "この文書を開く"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_UNINSTALL_SUCCESS_REBOOT 
+                            "Shairport4w は、このコンピュータから正常に削除されました。一部のファイルは再起動で削除されます。今すぐ再起動しますか?"
+    IDS_ONLINE_UPDATE       "オンラインアップデート..."
+    IDS_UPDATE_ERROR_FMT    "バージョン情報の判定に失敗。エラーコード: %lu/%ld. 後で再度お試しください。"
+    IDS_DOWNLOAD_ERROR_FMT  "新しいセットアップのダウンロードに失敗。エラーコード: %lu/%ld. 後で再度お試しください。"
+    IDS_NEW_VERSION_AVAILABLE 
+                            "最新版があります。すぐにダウンロードしインストールしますか?"
+    IDS_UPDATE_NOT_SIGNED   "ダウンロードされたアップデートファイルに適切な署名がありません"
+    IDS_FILE_NOT_SIGNED     "ファイル %s は署名がありません"
+    IDS_NO_NEW_VERSION      "最新版がインストール済みです"
+    IDS_CANCEL              "キャンセル"
+    IDS_LOAD_UPDATE         "更新をダウンロード"
+END
+
+#endif    // Japanese resources
+/////////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////////
 // English (United States) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
-#pragma code_page(1252)
+#pragma code_page(65001)
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
