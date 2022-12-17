@@ -973,9 +973,9 @@ FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     PUSHBUTTON      "キャンセル",IDCANCEL,133,98,50,14
     EDITTEXT        IDC_NAME,68,7,106,14,ES_AUTOHSCROLL
-    LTEXT           "Airport 名",IDC_STATIC,24, 10, 43, 8
-    LTEXT           "パスワード",IDC_STATIC,25, 28, 43, 8
-    LTEXT           "パスワード確認",IDC_STATIC,7, 46, 60, 8
+    LTEXT           "Airport 名",IDC_STATIC,31,10,34,8
+    LTEXT           "パスワード",IDC_STATIC,31,28,38,8
+    LTEXT           "パスワード確認",IDC_STATIC,15,46,51,8
     EDITTEXT        IDC_PASS,68,25,106,14,ES_PASSWORD | ES_AUTOHSCROLL
     EDITTEXT        IDC_VERIFYPASS,68,43,106,14,ES_PASSWORD | ES_AUTOHSCROLL
     PUSHBUTTON      "OK",IDOK,81,98,50,14
