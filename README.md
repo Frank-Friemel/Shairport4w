@@ -12,7 +12,7 @@ to be sure nobody is misusing this service
 * [`WTL`](https://sourceforge.net/projects/wtl) Windows Template Library
 
 ### Thanks
-* Thanks to James Laird who implemented the original version of "Shairport"
+* Thanks to James Laird who implemented the original version of "Shairport". Special thanks to Japanese Translator [maborosohin](https://github.com/maboroshin).
 
 ### License
 GPL. Sources that deviate from this license are marked by a header
