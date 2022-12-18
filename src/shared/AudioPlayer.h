@@ -29,7 +29,7 @@ public:
 	
     static void GetDeviceList(std::map< UINT, std::pair<std::wstring, CComVariant> >& mapDevices);
     static void	GetFullAudioDeviceByShortName(std::wstring& strDevname, CComVariant* pVarAudioID = NULL);
-    static int	GetWaveMapperID(CComVariant varSoundcardName, CComVariant* pVarAudioID = NULL);
+    static int	GetWaveMapperID(const CComVariant varSoundcardName);
 
 public:
 	// the default implementation just copies the data over

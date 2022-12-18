@@ -612,7 +612,7 @@ void CAudioPlayer::GetFullAudioDeviceByShortName(std::wstring& strDevname, CComV
         *pVarAudioID = strDevname.c_str();
 }
 
-int CAudioPlayer::GetWaveMapperID(CComVariant varSoundcardID, CComVariant* pVarAudioID /* = NULL */)
+int CAudioPlayer::GetWaveMapperID(const CComVariant varSoundcardID)
 {
     int nResult = (int)WAVE_MAPPER;
 
@@ -625,14 +625,10 @@ int CAudioPlayer::GetWaveMapperID(CComVariant varSoundcardID, CComVariant* pVarA
 
         case VT_BSTR:
         {
-            USES_CONVERSION;
+            const std::wstring strSoundcardID = OLE2CW_EX(varSoundcardID.bstrVal, CP_UTF8);
 
-            PCWSTR strSoundcardID = OLE2CW(varSoundcardID.bstrVal);
-
-            if (strSoundcardID && wcslen(strSoundcardID))
+            if (!strSoundcardID.empty())
             {
-                int nID = (int)wcslen(strSoundcardID);
-
                 WAVEOUTCAPSW caps;
 
                 UINT n = waveOutGetNumDevs();
@@ -644,9 +640,15 @@ int CAudioPlayer::GetWaveMapperID(CComVariant varSoundcardID, CComVariant* pVarA
                     if (waveOutGetDevCapsW(i, &caps, sizeof(caps)) != MMSYSERR_NOERROR)
                         break;
 
-                    ATL::CString strDevname(caps.szPname);
+                    const std::wstring strDevname(caps.szPname);
+					std::wstring strID(strDevname);
 
-                    if (nID >= strDevname.GetLength() && wcsncmp(strSoundcardID, strDevname, strDevname.GetLength()) == 0)
+					ATL::CComVariant varID;
+					GetFullAudioDeviceByShortName(strID, &varID);
+
+                    if ((strSoundcardID.length() >= strDevname.length() && 
+						wcsncmp(strSoundcardID.c_str(), strDevname.c_str(), strDevname.length()) == 0) ||
+						strID == strSoundcardID || varSoundcardID == varID)
                     {
                         nResult = (int)i;
                         break;
@@ -655,7 +657,7 @@ int CAudioPlayer::GetWaveMapperID(CComVariant varSoundcardID, CComVariant* pVarA
                 if (nResult == (int)WAVE_MAPPER)
                 {
                     // then strSoundcardName is MapperID+1
-                    nResult = _wtoi(strSoundcardID) - 1;
+                    nResult = _wtoi(strSoundcardID.c_str()) - 1;
                 }
             }
         }
@@ -666,17 +668,6 @@ int CAudioPlayer::GetWaveMapperID(CComVariant varSoundcardID, CComVariant* pVarA
             nResult = (int)varSoundcardID.lVal;
         }
         break;
-    }
-    if (pVarAudioID)
-    {
-        WAVEOUTCAPSW caps;
-
-        if (waveOutGetDevCapsW(nResult, &caps, sizeof(caps)) == MMSYSERR_NOERROR)
-        {
-            std::wstring strDevname(caps.szPname);
-
-            GetFullAudioDeviceByShortName(strDevname, pVarAudioID);
-        }
     }
     return nResult;
 }
