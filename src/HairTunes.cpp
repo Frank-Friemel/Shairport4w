@@ -25,50 +25,11 @@ static CComVariant	c_varSoundCardID;
 static USHORT		c_nUniquePortCounter	= 6000;
 static CMyMutex		c_mtxUniquePortCounter;
 
-static inline void biquad_init(CHairTunes::biquad_t *bq, double a[], double b[]) 
+CHairTunes::CHairTunes(const std::shared_ptr<Volume>& volume) 
+	: m_Queue(true)
+	, m_Volume(volume)
 {
-	bq->hist[0] = bq->hist[1] = 0.0l;
-
-	memcpy(bq->a, a, 2*sizeof(double));
-	memcpy(bq->b, b, 3*sizeof(double));
-}
-
-static inline void biquad_lpf(CHairTunes::biquad_t *bq, double freq, double Q, double sampling_rate, double frame_size)
-{
-	double w0		= 2.0l * M_PI * freq * frame_size / sampling_rate;
-	double alpha	= sin(w0) / (2.0l * Q);
-	double a_0		= 1.0l + alpha;
-	
-	double b[3];
-	double a[2];
-
-	b[0] = (1.0l - cos(w0)) / (2.0l * a_0);
-	b[1] = (1.0l - cos(w0)) / a_0;
-	b[2] = b[0];
-	a[0] = -2.0l * cos(w0) / a_0;
-	a[1] = (1 - alpha) / a_0;
-
-	biquad_init(bq, a, b);
-}
-
-static inline double biquad_filt(CHairTunes::biquad_t *bq, double in) 
-{
-	double	w	= in - bq->a[0]*bq->hist[0] - bq->a[1]*bq->hist[1];
-	double	out = bq->b[1]*bq->hist[0] + bq->b[2]*bq->hist[1] + bq->b[0]*w;
-    
-	bq->hist[1] = bq->hist[0];
-	bq->hist[0] = w;
-
-	return out;
-}
-
-CHairTunes::CHairTunes(void) : m_Queue(true)
-{
-	m_lcg_prev			= 12345; 
-	m_rand_a			= 0;
-	m_rand_b			= 0;
-
-	m_nFixVolume		= 0x10000;
+	ATLASSERT(m_Volume);
 
     m_decoder_info      = NULL;
 
@@ -85,7 +46,7 @@ CHairTunes::CHairTunes(void) : m_Queue(true)
 	memset(&m_bf_err_deriv_lpf, 0, sizeof(CHairTunes::biquad_t));
 }
 
-CHairTunes::~CHairTunes(void)
+CHairTunes::~CHairTunes()
 {
 	Stop();
 }
@@ -110,28 +71,6 @@ void CHairTunes::SetSoundId(const CComVariant& varValue)
 	c_varSoundCardID = varValue;
 }
 
-short CHairTunes::LcgRand() 
-{ 
-	m_lcg_prev = m_lcg_prev * 69069 + 3; 
-	return m_lcg_prev & 0xffff; 
-} 
-
-short CHairTunes::DitheredVol(short sample)
-{
-	long out;
-
-	out = (long)sample * m_nFixVolume;
-    
-	if (m_nFixVolume < 0x10000) 
-	{
-		m_rand_b = m_rand_a;
-		m_rand_a = LcgRand();
-		out += m_rand_a;
-		out -= m_rand_b;
-	}
-	return out >> 16;
-}
-
 int CHairTunes::StuffBuffer(const short* inptr, short* outptr, int nFrameSize, double bf_playback_rate) 
 {
 	int		i;
@@ -151,16 +90,16 @@ int CHairTunes::StuffBuffer(const short* inptr, short* outptr, int nFrameSize, d
 	for (i = 0; i < stuffsamp; i++) 
 	{   
 		// the whole frame, if no stuffing
-		*outptr++ = DitheredVol(*inptr++);
-		*outptr++ = DitheredVol(*inptr++);
+		*outptr++ = m_Volume->Transform(*inptr++);
+		*outptr++ = m_Volume->Transform(*inptr++);
 	}
 	if (stuff) 
 	{
 		if (stuff == 1) 
 		{
 			// interpolate one sample
-			*outptr++ = DitheredVol(((long)inptr[-2] + (long)inptr[0]) >> 1);
-			*outptr++ = DitheredVol(((long)inptr[-1] + (long)inptr[1]) >> 1);
+			*outptr++ = m_Volume->Transform(((long)inptr[-2] + (long)inptr[0]) >> 1);
+			*outptr++ = m_Volume->Transform(((long)inptr[-1] + (long)inptr[1]) >> 1);
 		} 
 		else if (stuff == -1) 
 		{
@@ -169,8 +108,8 @@ int CHairTunes::StuffBuffer(const short* inptr, short* outptr, int nFrameSize, d
 		}
 		for (i = stuffsamp; i < nFrameSize + stuff; i++) 
 		{
-			*outptr++ = DitheredVol(*inptr++);
-			*outptr++ = DitheredVol(*inptr++);
+			*outptr++ = m_Volume->Transform(*inptr++);
+			*outptr++ = m_Volume->Transform(*inptr++);
 		}
 	}
 	return nFrameSize + stuff;
@@ -434,14 +373,6 @@ void CHairTunes::SetPause(bool bValue)
 	}
 }
 
-void CHairTunes::SetVolume(double lfValue)
-{
-	double lfVolume		= pow(10.0l, 0.05l * lfValue);
-	long   nFixVolume	= (long)(65536.0l * lfVolume);
-
-	InterlockedExchange(&m_nFixVolume, nFixVolume);
-}
-
 void CHairTunes::OnStop()
 {
     m_hPcmPipe.Close();
@@ -701,3 +632,39 @@ bool CHairTunes::_CResendThread::_RequestResend(USHORT nSeq, short nCount)
 	return true;
 }
 
+void CHairTunes::biquad_init(biquad_t* bq, double a[], double b[])
+{
+	bq->hist[0] = bq->hist[1] = 0.0l;
+
+	memcpy(bq->a, a, 2 * sizeof(double));
+	memcpy(bq->b, b, 3 * sizeof(double));
+}
+
+void CHairTunes::biquad_lpf(biquad_t* bq, double freq, double Q, double sampling_rate, double frame_size)
+{
+	double w0 = 2.0l * M_PI * freq * frame_size / sampling_rate;
+	double alpha = sin(w0) / (2.0l * Q);
+	double a_0 = 1.0l + alpha;
+
+	double b[3];
+	double a[2];
+
+	b[0] = (1.0l - cos(w0)) / (2.0l * a_0);
+	b[1] = (1.0l - cos(w0)) / a_0;
+	b[2] = b[0];
+	a[0] = -2.0l * cos(w0) / a_0;
+	a[1] = (1 - alpha) / a_0;
+
+	biquad_init(bq, a, b);
+}
+
+double CHairTunes::biquad_filt(biquad_t* bq, double in)
+{
+	double	w = in - bq->a[0] * bq->hist[0] - bq->a[1] * bq->hist[1];
+	double	out = bq->b[1] * bq->hist[0] + bq->b[2] * bq->hist[1] + bq->b[0] * w;
+
+	bq->hist[1] = bq->hist[0];
+	bq->hist[0] = w;
+
+	return out;
+}

@@ -9,6 +9,7 @@
 #include "RaopDefs.h"
 #include "AudioPlayer.h"
 #include "myQueue.h"
+#include <atomic>
 
 #define BUFFER_FRAMES	512
 #define START_FILL		282
@@ -18,20 +19,39 @@
 class CRaopContext;
 struct alac_file;
 
-
 class CHairTunes : protected CMyThread, protected IRtpRequestHandler
 {
 public:
-    typedef struct
-    {
-        double hist[2];
-        double a[2];
-        double b[3];
-    } biquad_t;
+	class Volume final
+	{
+	public:
+		Volume()
+		{
+			m_volume = 1.0l;
+		}
+
+		short Transform(short sample) const
+		{
+			return static_cast<short>(static_cast<double>(sample) * m_volume);
+		}
+
+		void SetVolume(double lfValue)
+		{
+			const double lfVolume = pow(10.0l, 0.05l * lfValue);
+			
+			m_volume = lfVolume < 1.0l ? lfVolume : 1.0l;
+		}
+
+		Volume(const Volume&) = delete;
+		Volume& operator=(const Volume&) = delete;
+
+	private:
+		std::atomic<double> m_volume;
+	};
 
 public:
-    CHairTunes(void);
-    ~CHairTunes(void);
+    CHairTunes(const std::shared_ptr<Volume>& volume);
+    ~CHairTunes();
 
     static int			GetStartFill();
     static void			SetStartFill(int nValue);
@@ -46,8 +66,6 @@ public:
 
     void Flush();
     void SetPause(bool bValue);
-
-    void SetVolume(double lfValue);
 
     USHORT GetServerPort();			// host order
     USHORT GetControlPort();		// host order
@@ -68,10 +86,7 @@ protected:
     virtual void OnEvent();
 
 protected:
-    long								m_nFixVolume;
-    long								m_lcg_prev;
-    short								m_rand_a;
-    short								m_rand_b;
+	const std::shared_ptr<Volume>		m_Volume;
 
     CAudioPlayer                        m_AudioPlayer;
     CHandle                             m_hPcmPipe;
@@ -100,6 +115,13 @@ protected:
 protected:
     CMyQueue< std::shared_ptr<CRtpPacket> >	m_Queue;
 
+	typedef struct
+	{
+		double hist[2];
+		double a[2];
+		double b[3];
+	} biquad_t;
+
 	double								m_bf_playback_rate;
 	double								m_bf_est_drift;   
 	biquad_t							m_bf_drift_lpf;
@@ -117,11 +139,14 @@ protected:
 
 	inline void QueuePacket(std::shared_ptr<CRtpPacket>& p);
 	inline int AlacDecode(unsigned char* pDest, const unsigned char* pBuf, int len);
-	inline short DitheredVol(short sample);
-	inline short LcgRand();
 
 	void BF_EstReset();
 	void BF_EstUpdate(int fill);
+
+private:
+	static void biquad_init(biquad_t* bq, double a[], double b[]);
+	static void biquad_lpf(biquad_t* bq, double freq, double Q, double sampling_rate, double frame_size);
+	static double biquad_filt(biquad_t* bq, double in);
 
 protected:
 	class _CResendThread : public CMyThread
