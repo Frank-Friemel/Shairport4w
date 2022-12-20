@@ -118,7 +118,7 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,9,6
+ FILEVERSION 1,0,9,7
  PRODUCTVERSION 1,0,0,1
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
@@ -134,7 +134,7 @@ BEGIN
     BEGIN
         BLOCK "040904b0"
         BEGIN
-            VALUE "FileVersion", "1.0.9.6"
+            VALUE "FileVersion", "1.0.9.7"
             VALUE "InternalName", "Shairport4w"
             VALUE "OriginalFilename", "Shairport4w.exe"
             VALUE "ProductName", "Shairport4w Module"
