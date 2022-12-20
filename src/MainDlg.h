@@ -12,6 +12,7 @@
 #include "DacpService.h"
 
 #include "MyAppMessages.h"
+#include <future>
 
 class CMainDlg : public CDialogImpl<CMainDlg>, public CUpdateUI<CMainDlg>,
 		public CMessageFilter, public CIdleHandler, public CWinDataExchange<CMainDlg>
@@ -216,6 +217,63 @@ protected:
 
 	CComVariant														m_strSetupVersion;
 	ATL::CString													m_strReady;
+
+	class NotificationInfo final
+	{
+	public:
+		NotificationInfo(std::wstring&& strNowPlayingLabel, std::wstring&& strFmtNowPlaying, HICON hIcon)
+			: m_strNowPlayingLabel(std::move(strNowPlayingLabel))
+			, m_strFmtNowPlaying(std::move(strFmtNowPlaying))
+			, m_hIcon(hIcon)
+		{
+		}
+
+		~NotificationInfo()
+		{
+			if (m_hIcon)
+			{
+				::DestroyIcon(m_hIcon);
+			}
+		}
+
+		NotificationInfo(const NotificationInfo&) = delete;
+		NotificationInfo& operator=(const NotificationInfo&) = delete;
+
+		void UpdateInfo(std::wstring&& strNowPlayingLabel, std::wstring&& strFmtNowPlaying, HICON hIcon)
+		{
+			if (m_hIcon)
+			{
+				::DestroyIcon(m_hIcon);
+			}
+			m_strNowPlayingLabel = std::move(strNowPlayingLabel);
+			m_strFmtNowPlaying = std::move(strFmtNowPlaying);
+			m_hIcon = hIcon;
+		}
+
+		PCWSTR GetNowPlayingLabel() const
+		{
+			return m_strNowPlayingLabel.c_str();
+		}
+
+		PCWSTR GetFmtNowPlaying() const
+		{
+			return m_strFmtNowPlaying.c_str();
+		}
+
+		HICON GetIcon() const
+		{
+			return m_hIcon;
+		}
+
+	protected:
+		std::wstring m_strNowPlayingLabel;
+		std::wstring m_strFmtNowPlaying;
+		HICON m_hIcon;
+	};
+
+	std::future<void>												m_asyncNotification;
+	std::unique_ptr<NotificationInfo>								m_notificationInfo;
+	CMyMutex														m_mtxNotification;
 
 	void PutMMState(typeMMState nMmState);
 

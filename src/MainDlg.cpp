@@ -778,7 +778,7 @@ void CMainDlg::OnSysCommand(UINT wParam, CPoint pt)
 
 						ATLVERIFY(strAck.LoadString(IDS_TRAY_ACK));
 				
-						SetInfoText(A2CT(strConfigName.c_str()), strAck);
+						SetInfoText(A2CT(strConfigName.c_str()), strAck, false);
 						PutValueToRegistry(HKEY_CURRENT_USER, "TrayAck", "ok");
 					}
 				}
@@ -1265,10 +1265,40 @@ LRESULT CMainDlg::OnSongInfo(UINT /*uMsg*/, WPARAM /*wParam*/, LPARAM lParam, BO
 				}
 			}			
 			if (!g_bMute || lParam)
-				SetInfoText(strNowPlayingLabel, strFmtNowPlaying, hIcon);
+			{
+				CMyMutex::AutoSync sync(m_mtxNotification);
 
-			if (hIcon)
-				::DestroyIcon(hIcon);
+				if (!m_notificationInfo)
+				{
+					m_notificationInfo = std::make_unique<NotificationInfo>(std::wstring(strNowPlayingLabel), std::wstring(strFmtNowPlaying), hIcon);
+
+					// schedule new notification to be displayed after 1 second
+					auto asyncNotification = std::async(std::launch::async, [this]() -> void
+						{
+							::Sleep(1000);
+
+							CMyMutex::AutoSync sync(m_mtxNotification);
+
+							if (m_notificationInfo)
+							{
+								const auto notificationInfo = std::move(m_notificationInfo);
+								sync.Unlock();
+
+								// now, commit info to Tray
+								SetInfoText(notificationInfo->GetNowPlayingLabel(),
+									notificationInfo->GetFmtNowPlaying(), notificationInfo->GetIcon());
+							}
+						});
+
+					std::swap(m_asyncNotification, asyncNotification);
+					sync.Unlock();
+				}
+				else
+				{
+					// just update the notification info
+					m_notificationInfo->UpdateInfo(std::wstring(strNowPlayingLabel), std::wstring(strFmtNowPlaying), hIcon);
+				}
+			}
 		}
 	}
 	return 0l;

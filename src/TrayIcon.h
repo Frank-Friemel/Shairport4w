@@ -49,8 +49,11 @@ public:
 	{
 		RemoveTray();
 	}
+
 	bool InitTray(LPCTSTR lpszToolTip, HICON hIcon, UINT nID)
 	{
+		const CMyMutex::AutoSync sync(m_mtx);
+
 		if (m_bInit)
 			return true;
 
@@ -70,6 +73,8 @@ public:
 	}
 	void UpdateTrayIcon(HICON hIcon)
 	{
+		const CMyMutex::AutoSync sync(m_mtx);
+
 		if (m_bInit)
 		{
 			T* pT = static_cast<T*>(this);
@@ -88,6 +93,8 @@ public:
 	}
 	void SetTooltipText(LPCTSTR pszTooltipText)
 	{
+		const CMyMutex::AutoSync sync(m_mtx);
+
 		if (m_bInit && pszTooltipText)
 		{
 			m_nid.uFlags = NIF_TIP;
@@ -96,12 +103,14 @@ public:
 			Shell_NotifyIcon(NIM_MODIFY, (PNOTIFYICONDATA)&m_nid);
 		}
 	}
-	void SetInfoText(LPCTSTR pszInfoTitle, LPCTSTR pszInfoText, HICON hIcon = NULL)
+	void SetInfoText(LPCTSTR pszInfoTitle, LPCTSTR pszInfoText, HICON hIcon = NULL, bool avoidDuplicates = true)
 	{
-		if (m_bInit && pszInfoText)
+		const CMyMutex::AutoSync sync(m_mtx);
+
+		if (m_bInit && pszInfoText && *pszInfoText && (!avoidDuplicates || m_strPreviousInfoText != std::wstring(pszInfoText)))
 		{
 			m_nid.uFlags		= NIF_INFO;
-			m_nid.dwInfoFlags	= NIIF_USER | (hIcon ? NIIF_LARGE_ICON : 0);
+			m_nid.dwInfoFlags	= NIIF_USER | NIIF_NOSOUND | (hIcon ? NIIF_LARGE_ICON : 0);
 			m_nid.uTimeout		= 15000;
 
 			if (pszInfoTitle)
@@ -111,10 +120,17 @@ public:
 			m_nid.hBalloonIcon = hIcon;
 
 			Shell_NotifyIcon(NIM_MODIFY, (PNOTIFYICONDATA)&m_nid);
+
+			if (avoidDuplicates)
+			{
+				m_strPreviousInfoText = pszInfoText;
+			}
 		}
 	}
 	void RemoveTray()
 	{
+		const CMyMutex::AutoSync sync(m_mtx);
+
 		if (m_bInit)
 		{
 			m_nid.uFlags = 0;
@@ -161,7 +177,10 @@ public:
 		}
 		return 0;
 	}
-protected:
+
+private:
 	bool				m_bInit;
 	NOTIFYICONDATA_4	m_nid;
+	std::wstring		m_strPreviousInfoText;
+	CMyMutex			m_mtx;
 };
