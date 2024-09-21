@@ -1,7 +1,8 @@
 # Shairport4w
 
-> **News:** Shairport4w is outdated and now has a successor: [ShairportQt](https://github.com/Frank-Friemel/ShairportQt)
+> **News:** Shairport4w is **outdated** and now has a successor: [ShairportQt](https://github.com/Frank-Friemel/ShairportQt)
 which is cross platform and brings many bug fixes.
+
 
 An AirPlay Audio-Receiver for your Windows-PC
 
