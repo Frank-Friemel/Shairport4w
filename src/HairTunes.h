@@ -13,7 +13,7 @@
 
 #define BUFFER_FRAMES	512
 #define START_FILL		282
-#define	MIN_FILL		30
+#define	MIN_FILL		0
 #define	MAX_FILL		500
 
 class CRaopContext;
